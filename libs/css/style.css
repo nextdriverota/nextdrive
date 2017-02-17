@@ -1,0 +1,433 @@
+html, body, .fullheight{
+    height: 100%;
+    overflow: hidden;
+    font-family: Roboto, sans-serif;
+    margin-bottom: 0px;
+}
+
+body{
+    background: url("../../images/main-bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body .container.login-cont{
+    min-width: 600px;
+    max-width: 900px;
+}
+
+.darker {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.6);
+    z-index: -1;
+}
+
+.logo{
+    background: url("../../images/nextdrive-logo.png") no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    height: 100px;
+}
+
+.row.login{
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row.login label{
+    color: #FFFFFF;
+}
+
+.row.login .active{
+    color: #ec0034 !important;
+}
+
+.row.login input[type=text]:focus:not([readonly]),
+.row.login input[type=text].valid,
+.row.login input[type=password]:focus:not([readonly]),
+.row.login input[type=password].valid{
+    border-bottom-color: #ec0034 !important;
+    box-shadow:  0 1px 0 0 #ec0034 !important;
+}
+
+.valign .row .col .login-des, .valign .row.login .col{
+    color: #fff;
+}
+
+.login .btn{
+    background: transparent;
+    border: 1px solid;
+}
+
+.login .btn:hover{
+    color: #ec0034;
+    border: 1px solid #ec0034;
+}
+
+.white-bg {
+    background-color: #fafafa;
+}
+
+/* nav bar */
+.navbar-fixed{
+    position: fixed;
+    left: 0px;
+    height: 45px;
+}
+
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 45px;
+    line-height: 45px;
+}
+
+nav{
+    background-color: #424242;
+}
+
+nav ul li a{
+    font-size: 13px;
+}
+
+.sidenav-overlay{
+    z-index: 996 !important;
+}
+
+.brand-logo{
+    background: url("../../images/nextdrive-logo-nav.png")no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    height: 45px;
+    width: 200px;
+}
+
+.db-body{
+    margin-top: 64px;
+}
+
+nav ul li.search{
+    height: 45px;
+    margin-left: 250px;
+    width: 100%;
+}
+
+nav ul li.search .input-field{
+    padding: 3px;
+}
+
+nav ul li.search .input-field #search{
+    font-size: 14px;
+}
+
+nav ul li.search .input-field .search-ico{
+    font-size: 22px;
+}
+
+ul.autocomplete-content.dropdown-content{
+    margin-top: 0px;
+}
+
+/* image cropper */
+img {
+    max-width: 100%; /* This rule is very important, please do not ignore this! */
+}
+.image_container{
+    width:600px;
+    height: 500px;
+}
+
+/* section */
+.section{
+    border-bottom: 1px solid #eeeeee;
+}
+
+.section .about-inner{
+    height: 300px;
+}
+.person-img img{
+    border: 8px solid #fff;
+    min-width: 85%;
+}
+
+.about-subtitle,.experience-subtitle,.interest-subtitle,.eduction-subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+#aboutSectionEdit .about-subtitle,.experience-subtitle, .interest-subtitle, .eduction-subtitle {
+    font-size: 24px;
+}
+
+.person-bag .about-subtitle{
+    margin-bottom: 24px;
+}
+
+.about-inner h3{
+    margin-top: 0px;
+}
+
+.person-info h5 {
+    border-bottom: 1px solid #eeeeee;
+    color: #727272;
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+
+.person-info h5 span {
+    display: inline-block;
+    min-width: 70px;
+}
+
+.person-bag p {
+    color: #727272;
+    font-size: 14px;
+    line-height: 28px;
+    margin-bottom: 35px;
+}
+
+.about-social ul li .disabled i{
+    background-color: #DFDFDF !important;
+    color: #9F9F9F !important;
+}
+
+.about-social ul li .disabled{
+   box-shadow:  0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2) !important;
+}
+
+.about-social {
+    margin: 25px 0 0;
+}
+
+.about-social ul li {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.experience-inner h5{
+    color: #444444;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+}
+
+.experience-inner p, .education-inner p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.experience-inner p span, .education-inner p.edu-dates{
+    color: #8c8c8c;
+    font-size: 13px;
+}
+
+.experience-inner p span.comp-address::before{
+    content: "|";
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #8c8c8c;
+}
+
+.experience-inner p.comp-description, .education-inner p.edu-description {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.education-inner p.edu-study{
+    font-size: 18px;
+}
+
+.skill-inner .btn.disabled {
+    text-transform: capitalize;
+    margin-bottom: 3px;
+    margin-right: 3px;
+}
+
+.row.personal-info, .row.exp-info, .row.edu-info, .row.skill-info{
+    margin-bottom: 0px;
+}
+
+.card-panel{
+    padding-bottom: 0px;
+}
+
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea{
+    margin: 0 0 5px 0;
+}
+
+.btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+    font-size: 1rem;
+}
+
+.personal-info .input-field label.active, .exp-info .input-field label.active, .edu-info .input-field label.active, .edu-info .input-field label.selectLbl {
+    font-size: 14px;
+}
+
+.edu-info .input-field label.selectLbl span{
+    color: #b9b9b9;
+    font-size: 12px;
+}
+
+.section#aboutSectionEdit, .section#experienceSectionEdit, .section#eductionSectionEdit, .section#interestsSectionEdit{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skill-info .chip{
+    border-radius: 0px;
+}
+
+.exp-info label.filled-in-check {
+    left: 0px !important;
+}
+
+.exp-info .filled-in-text {
+    color: rgb(0,0,0) !important;
+}
+
+.message-box {
+    position: fixed;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1001;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.file-path-wrapper .file-path{
+    color: #000;
+}
+
+.error{
+    color: red;
+    padding-left: 10px;
+}
+
+.col.s10.message-box-title{
+    color: #000;
+    padding-top: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.fa.fa-close{
+    color: #000000;
+    float: right;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.message-box .message-box-wrapper {
+    max-width: 500px;
+    background: #fafafa;
+    margin: 0 auto;
+    border: 1px solid rgb(0, 188, 212);
+    border-radius: 3px;
+}
+
+.experience-inner i.fa, .education-inner i.fa{
+    font-size: 20px;
+    float: right;
+    cursor: pointer;
+}
+
+.valign .row .col{
+    color: #000;
+}
+
+.educationDelete, .experienceDelete{
+    margin-left: 5px;
+}
+
+/* color section */
+.about-subtitle, .experience-subtitle, .interest-subtitle, .eduction-subtitle{
+    color: rgb(0, 188, 212);
+}
+
+.btn-large.brand-bg {
+    background-color: rgb(0, 188, 212);
+}
+
+.about-social ul li a i{
+    background-color: rgb(0, 188, 212);
+    font-size: 14px;
+}
+.skill-inner .btn.disabled{
+    color: rgb(0, 188, 212) !important;
+}
+
+
+/*fade in animation*/
+
+.login_page {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+}
+
+/*.login_page {
+    -webkit-animation: fadeout 2s; !* Safari, Chrome and Opera > 12.1 *!
+    -moz-animation: fadeout 2s; !* Firefox < 16 *!
+    -ms-animation: fadeout 2s; !* Internet Explorer *!
+    -o-animation: fadeout 2s; !* Opera < 12.1 *!
+    animation: fadeout 2s;
+}*/
+
+.sign_up_page {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+}
+
+/*.sign_up_page {
+    -webkit-animation: fadeout 2s; !* Safari, Chrome and Opera > 12.1 *!
+    -moz-animation: fadeout 2s; !* Firefox < 16 *!
+    -ms-animation: fadeout 2s; !* Internet Explorer *!
+    -o-animation: fadeout 2s; !* Opera < 12.1 *!
+    animation: fadeout 2s;
+}*/
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

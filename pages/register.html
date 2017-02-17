@@ -1,0 +1,36 @@
+<div class="valign-wrapper fullheight sign_up_page">
+    <div class="col s12 valign">
+        <div class="row">
+            <div class="col s12 logo"></div>
+            <div class="col s12">
+                <h5 class="center">Welcome!</h5>
+                <p class="center">NextDrive is a job portal unlike others which connects professionals from Rotary with novices from Rotaract. Upload your CV/ portfolio and get recruited by some of the finest organizations in the country!</p>
+            </div>
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row login">
+                    <div class="input-field col s12">
+                        <input ng-model="nic" type="text" class="validate" id="form-nic" placeholder="" />
+                        <label for="form-nic">NIC</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input ng-model="password" type="password" class="validate" id="form-password" placeholder="">
+                        <label for="form-password">Password</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input ng-model="confPassword" type="password" class="validate" id="form-conf-password" placeholder="" />
+                        <label for="form-conf-password">Confirm Password</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <a id="btn-sign-up" class="waves-effect waves-light btn margin-bottom-1em col s6" ng-click="register()">Sign Up</a>
+                        <a id="btn-login" class="waves-effect waves-light btn margin-bottom-1em col s6" ng-click="login()">Login</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s12" id="error"></div>
+        </div>
+    </div> <!-- end col s12 -->
+</div>

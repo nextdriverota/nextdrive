@@ -1,0 +1,500 @@
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="" class="brand-logo"></a>
+            <ul class="left">
+                <li class="search">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required ng-click="initResults()" ng-model="keywords" value="" key-enter="searchPeople()">
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons search-ico" ng-click="searchPeople()">send</i>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="" ng-click="publicProfile()">{{ user_name_long }}</a></li>
+                <li><a href="" ng-click="editProfile()">Edit Profile</a></li>
+                <!--<li><a href="">Javascript</a></li>-->
+                <li><a href="" ng-click="logout()">Sign out</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="" ng-click="publicProfile()">{{ user_name_long }}</a></li>
+                <li><a href="" ng-click="editProfile()">Edit Profile</a></li>
+                <!--<li><a href="">Javascript</a></li>-->
+                <li><a href="" ng-click="logout()">Sign out</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<script>
+    // jquery codes will be here
+    $(document).ready(function(){
+        // initialize menu collapse
+        $(".button-collapse").sideNav();
+    });
+</script>
+
+
+<div class="col s12 db-body">
+    <!-- public profile -->
+    <div class="row" ng-show="public_profile_section">
+        <div class="col s12">
+            <!-- About -->
+            <section class="section" id="aboutSection">
+                <div class="row">
+                    <div class="clearfix about-inner">
+                        <div class="col l4 m6 s12 person-img">
+                            <img class="z-depth-1" src="{{person_image}}" alt="">
+                        </div>
+                        <div class="col l4 m6 s12">
+                            <div class="person-info">
+                                <h3 class="about-subtitle">Personal Information</h3>
+                                <h5><span>Name :</span> {{info_name}}</h5>
+                                <h5><span>Club :</span> {{info_club}}</h5>
+                                <h5><span>Age :</span> {{info_age}}</h5>
+                                <h5><span>Phone :</span> {{info_phone}}</h5>
+                                <h5><span>Email :</span> {{info_email}}</h5>
+                                <!--<h5><span>Address :</span> {{info_address}}</h5>-->
+                            </div>
+                            <div class="about-social">
+                                <ul>
+                                    <li>
+                                        <a href="{{infoLinks.LINKEDIN}}" class="btn-floating waves-effect waves-light white " id="info-linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{infoLinks.FACEBOOK}}" class="btn-floating waves-effect waves-light white " id="info-facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{infoLinks.GOOGLEPLUS}}" class="btn-floating waves-effect waves-light white" id="info-googleplus" target="_blank"><i class="fa fa-google-plus"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{infoLinks.TWITTER}}" class="btn-floating waves-effect waves-light white" id="info-twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{infoLinks.BLOG}}" class="btn-floating waves-effect waves-light white " id="info-blog" target="_blank"><i class="fa fa-pinterest"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col l4 m12 s12">
+                            <div class="person-bag">
+                                <h3 class="about-subtitle">Background</h3>
+                                <p>{{infoLinks.BACKGROUND}}</p>
+                                <p>
+                                    <a class="waves-effect waves-light btn-large brand-bg white-text" target="_self" href="{{cvURL}}" download="{{cvName}}" ng-disabled="downloadCV"><i class="fa fa-download mdi-content-archive left"></i> Download Resume</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Experience -->
+            <section class="section" id="experienceSection">
+                <div class="row">
+                    <div class="clearfix experience-inner">
+                        <div class="col s12">
+                            <h3 class="experience-subtitle">Professional Experience</h3>
+                        </div>
+                        <div class="col s12" ng-repeat="exp in expArr">
+                            <h5>{{exp.TITLE}}</h5>
+                            <p class="comp-name">{{exp.COMPANY}}</p>
+                            <p><span class="comp-from">{{exp.DATE_FROM}}</span> –  <span class="comp-to">{{exp.DATE_TO}} ({{exp.PERIOD}})</span>
+                                <span class="comp-address">{{exp.ADDRESS}}</span></p>
+                            <p class="comp-description">{{exp.DESCRIPTION}}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Interested areas -->
+            <section class="section" id="interestsSection">
+                <div class="row">
+                    <div class="clearfix skill-inner">
+                        <div class="col s12">
+                            <h3 class="interest-subtitle">Interested Areas</h3>
+                        </div>
+                        <div class="col s12">
+                            <a class="btn disabled" ng-repeat="interest in interestsArr">{{interest}}</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Education -->
+            <section class="section" id="eductionSection">
+                <div class="row">
+                    <div class="clearfix education-inner">
+                        <div class="col s12">
+                            <h3 class="eduction-subtitle">Eduction</h3>
+                        </div>
+                        <div class="col s12" ng-repeat="edu in eduArr">
+                            <h5>{{edu.INSTITUTE}}</h5>
+                            <p class="edu-study"><span class="edu-degree">{{edu.DEGREE}}</span>, <span class="edu-field">{{edu.FIELD}}</span></p>
+                            <p class="edu-dates"><span class="edu-from">{{edu.DATE_FROM}}</span> –  <span class="edu-to">{{edu.DATE_TO}}</span></p>
+                            <p class="edu-description">{{edu.DESCRIPTION}}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+
+    <!-- edit profile -->
+    <div class="row" ng-show="edit_profile_section">
+        <!-- About -->
+        <section class="section" id="aboutSectionEdit">
+            <div class="row">
+                <div class="col s12">
+                    <div class="clearfix about-inner">
+                        <h3 class="about-subtitle">Persional Information</h3>
+                        <div class="row personal-info">
+                            <form class="col s12" ng-submit="saveLinks(info)">
+                                <div class="row personal-info">
+                                    <div class="col s12 m12 l6">
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea id="message" class="materialize-textarea" ng-model="info.background"></textarea>
+                                                <label for="message" class="active">Background</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="ln_link" type="text" ng-model="info.linkedin">
+                                                <label for="ln_link" class="active">Linkedin link</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="fb_link" type="text" ng-model="info.facebook">
+                                                <label for="fb_link" class="active">facebook link</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="gp_link" type="text" ng-model="info.googleplus">
+                                                <label for="gp_link" class="active">google plus link</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="tw_link" type="text" ng-model="info.twitter">
+                                                <label for="tw_link" class="active">twitter link</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="bg_link" type="text" ng-model="info.blog">
+                                                <label for="bg_link" class="active">blog link</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Save</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <button class="btn cyan waves-effect waves-light left" name="action" ng-click="openUploadPropic()">Set Profile Pic</button>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <button class="btn cyan waves-effect waves-light right" name="action" ng-click="openUploadResume()">Upload Resume</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m12 l6">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Experience -->
+        <section class="section" id="experienceSectionEdit">
+            <div class="row">
+                <div class="col s12">
+                    <div class="clearfix experience-inner">
+                        <h3 class="experience-subtitle">Professional Experience<i class="fa fa-plus" ng-click="addExperience()"></i></h3>
+                        <div class="row">
+                            <div class="col s12" ng-repeat="exp in expArr">
+                                <h5>{{exp.TITLE}}<i class="fa fa-pencil" ng-click="editExperience(exp)"></i></h5>
+                                <p class="comp-name">{{exp.COMPANY}}</p>
+                                <p><span class="comp-from">{{exp.DATE_FROM}}</span> –  <span class="comp-to">{{exp.DATE_TO}} ({{exp.PERIOD}})</span>
+                                    <span class="comp-address">{{exp.ADDRESS}}</span></p>
+                                <p class="comp-description">{{exp.DESCRIPTION}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Interested areas -->
+        <section class="section" id="interestsSectionEdit">
+            <div class="row">
+                <div class="clearfix skill-inner">
+                    <div class="col s12">
+                        <h3 class="interest-subtitle">Interested Areas</h3>
+                        <div class="row skill-info">
+                            <div class="col s12">
+                                <form class="row skill-info" ng-submit="saveInterests()">
+                                    <div class="col s12 m12 l6">
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <div class="chips chips-placeholder"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Education -->
+        <section class="section" id="eductionSectionEdit">
+            <div class="row">
+                <div class="clearfix education-inner">
+                    <h3 class="eduction-subtitle">Eduction<i class="fa fa-plus" ng-click="addEducation()"></i></h3>
+                    <div class="row">
+                        <div class="col s12" ng-repeat="edu in eduArr">
+                            <h5>{{edu.INSTITUTE}}<i class="fa fa-pencil" ng-click="editEducation(edu)"></i></h5>
+                            <p class="edu-study"><span class="edu-degree">{{edu.DEGREE}}</span>, <span class="edu-field">{{edu.FIELD}}</span></p>
+                            <p class="edu-dates"><span class="edu-from">{{edu.DATE_FROM}}</span> –  <span class="edu-to">{{edu.DATE_TO}}</span></p>
+                            <p class="edu-description">{{edu.DESCRIPTION}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+ <!-- message boxes -->
+
+<div class="message-box valign-wrapper" ng-show="CVmessageBox">
+    <div class="col s12 valign message-box-wrapper">
+        <div class="row">
+            <div class="col s10 message-box-title">
+                Select resume to upload
+            </div>
+            <div class="col s2">
+                <i class="fa fa-close" ng-click="closeMsgCV()"></i>
+            </div>
+        </div>
+        <div class="row">
+            <form enctype="multipart/form-data" name="cvForm">
+                <div class="file-field input-field col s12">
+                    <div class="btn cyan waves-effect waves-light">
+                        <span>Browse</span>
+                        <input type="file" ngf-select ng-model="picFile" name="file" file-model="pdfFile"
+                               accept="application/pdf" ngf-max-size="2MB" required
+                               ngf-model-invalid="errorFile">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <i class="error" ng-show="cvForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                <div class="input-field col s12">
+                    <button class="btn cyan waves-effect waves-light right" type="submit" name="action" ng-disabled="!cvForm.$valid"
+                            ng-click="uploadResume()">Upload Resume</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="message-box valign-wrapper" ng-show="ProPicMessageBox">
+    <div class="col s12 valign message-box-wrapper">
+        <div class="row">
+            <div class="col s10 message-box-title">
+                Set profile picture
+            </div>
+            <div class="col s2">
+                <i class="fa fa-close" ng-click="closeMsgProPic()"></i>
+            </div>
+        </div>
+        <div class="row">
+            <form enctype="multipart/form-data" name="imageForm">
+                <div class="col s12 text-center">
+                    <div id="upload-demo"></div>
+                </div>
+                <div class="file-field input-field col s12">
+                    <div class="btn cyan waves-effect waves-light">
+                        <span>Browse</span>
+                        <input type="file" id="upload" ngf-select accept="image/*" ngf-max-size="1MB" required
+                               ngf-model-invalid="errorFile">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <i class="error" ng-show="imageForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 1M</i>
+                <div class="input-field col s12">
+                    <button class="btn cyan waves-effect waves-light right" ng-disabled="!imageForm.$valid"
+                            id="upload-result" ng-click="uploadImage()">Upload Image</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/nextdrive/libs/js/croppieActivator.js"></script>
+
+<div class="message-box valign-wrapper" ng-show="addEducationMsg">
+    <div class="col s12 valign message-box-wrapper">
+        <div class="row">
+            <div class="col s10 message-box-title">
+                {{educationTitle}}
+            </div>
+            <div class="col s2">
+                <i class="fa fa-close" ng-click="closeMsgEducation()"></i>
+            </div>
+        </div>
+        <div class="row edu-info">
+            <form class="col s12"  ng-submit="saveEducation(education)">
+                <div class="row edu-info">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="edu_institute" type="text" ng-model="education.institute">
+                                <label for="edu_institute" class="active">School/University</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select ng-model="education.degree" ng-init="education.degree = degreeList[0]" class="degree">
+                                    <option ng-repeat="deg in degreeList" value="{{deg}}">{{deg}}</option>
+                                    <!--<option value="High School or equivalent">High School or equivalent</option>
+                                    <option value="Vocational training">Vocational training</option>
+                                    <option value="Certification (Diploma)">Certification (Diploma)</option>
+                                    <option value="Bachelor's degree">Bachelor's degree</option>
+                                    <option value="Master's degree">Master's degree</option>-->
+                                </select>
+                                <label class="selectLbl">Degree Level</label>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    $('select').material_select();
+                                });
+                            </script>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 ui-widget">
+                                <input id="edu_field" type="text" ng-model="education.field">
+                                <label for="edu_field" class="active">Field of Study</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select name="repeatSelect" id="edu_from" ng-model="education.year_from" ng-init="education.year_from = yearList[0]">
+                                    <option ng-repeat="option in yearList" value="{{option}}">{{option}}</option>
+                                </select>
+                                <label class="selectLbl">From</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <select name="repeatSelect" id="edu_to" ng-model="education.year_to" ng-init="education.year_to = yearList[0]">
+                                    <option ng-repeat="option in yearList" value="{{option}}">{{option}}</option>
+                                </select>
+                                <label class="selectLbl">To <span>(or expected graduation year)</span></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="edu_des" class="materialize-textarea" ng-model="education.description"></textarea>
+                                <label for="edu_des" class="active">Description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn red waves-effect waves-light right educationDelete" ng-click="deleteEducation(education.id)" name="action" ng-show="deleteEducationBtn"><i class="fa fa-trash-o"></i></button>
+                                <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="message-box valign-wrapper" ng-show="addExperienceMsg">
+    <div class="col s12 valign message-box-wrapper">
+        <div class="row">
+            <div class="col s10 message-box-title">
+                {{experienceTitle}}
+            </div>
+            <div class="col s2">
+                <i class="fa fa-close" ng-click="closeMsgExperience()"></i>
+            </div>
+        </div>
+        <div class="row exp-info">
+            <form class="col s12" ng-submit="saveExperience(experience)">
+                <div class="row exp-info">
+                    <div class="col s12 m12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="job_title" type="text" ng-model="experience.title">
+                                <label for="job_title" class="active">Title</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="job_company" type="text" ng-model="experience.company">
+                                <label for="job_company" class="active">Company</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="job_from" type="date" class="datepicker" ng-model="experience.from_date">
+                                <label for="job_from" class="active">From</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="job_to" type="date" class="datepicker" ng-model="experience.to_date" ng-show="!experience.present">
+                                <label for="job_to" class="active">To</label>
+                                <input disabled value="present" class="filled-in-text" id="job_present" type="text" ng-show="experience.present">
+                                <label for="job_present" class="active">To</label>
+                                <p>
+                                    <input type="checkbox" class="filled-in" id="job_present_check" ng-model="experience.present"/>
+                                    <label for="job_present_check" class="filled-in-check">I'm currently working here</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="job_address" type="text" ng-model="experience.address">
+                                <label for="job_address" class="active">Address</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="job_des" class="materialize-textarea" ng-model="experience.description"></textarea>
+                                <label for="job_des" class="active">Description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn red waves-effect waves-light right experienceDelete" ng-click="deleteExperience(experience.id)" name="action" ng-show="deleteExperienceBtn"><i class="fa fa-trash-o"></i></button>
+                                <button class="btn cyan waves-effect waves-light right" type="submit" name="action" ng-disabled="experience.$invalid">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
