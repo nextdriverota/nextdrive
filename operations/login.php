@@ -26,9 +26,9 @@ $user->password =$data->password;
 if($user->search())
 {
     $_SESSION['userSession'] = $user->nic;
-    echo "true";
+    echo true;
 }
 else
 {
-    echo "false";
+    echo false;
 }

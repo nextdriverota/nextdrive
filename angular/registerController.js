@@ -58,4 +58,6 @@ app.controller('registerController', function($scope, $rootScope, $location, $ht
         $location.path('/login');
     }
 
+    $scope.regerror = false;
+
 });

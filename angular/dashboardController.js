@@ -296,8 +296,21 @@ app.controller('dashboardController', function($scope, $rootScope, fileUpload, $
             ).then(
                 function (data)
                 {
-                    //console.log(data.data[0]);
-                    setLinks(data.data[0]);
+                    if (data.data != "null")
+                    {
+                        setLinks(data.data[0]);
+                    }
+                    else
+                    {
+                        var info = {
+                            LINKEDIN : "",
+                            FACEBOOK : "",
+                            GOOGLEPLUS : "",
+                            TWITTER : "",
+                            BLOG : ""
+                        }
+                        setLinks(info);
+                    }
                 },
                 function (error)
                 {
@@ -1007,7 +1020,7 @@ app.controller('dashboardController', function($scope, $rootScope, fileUpload, $
             $scope.info_name = udata.name_on_card;
             $scope.info_club = udata.club;
             $scope.info_age = parseInt( new Date().getFullYear() ) - parseInt( udata.date_of_birth.split('-')[2] )
-            $scope.info_phone = udata.mobile;
+            $scope.info_phone = "+94 "+ udata.mobile;
             $scope.info_email = udata.email;
             /*$scope.info_address = udata.address.replace(/ ,/,'').replace(/ ,/,'');*/
         }
@@ -1021,7 +1034,7 @@ app.controller('dashboardController', function($scope, $rootScope, fileUpload, $
     loadExperience();
 
     var setExperience = function (expArr) {
-        if (expArr != null)
+        if (expArr != "null")
         {
             for (var i = 0; i < expArr.length; i++)
             {
@@ -1046,15 +1059,17 @@ app.controller('dashboardController', function($scope, $rootScope, fileUpload, $
                     expArr[i].PERIOD = period(f_date,t_date) > 12 ? Math.round(period(f_date, t_date) / 12) + " years" : Math.round(period(f_date,t_date)) + " months";
                 }
             }
+            $scope.expArr = expArr;
         }
-
-        $scope.expArr = expArr;
     }
 
     loadEducation();
 
     var setEducation = function (eduArr) {
-        $scope.eduArr = eduArr;
+        if (eduArr != "null")
+        {
+            $scope.eduArr = eduArr;
+        }
     }
 
     loadInterests();

@@ -33,7 +33,7 @@ app.controller('loginController', function($scope, $rootScope, $location, $http)
             ).then(
                 function (data, status, headers, config)
                 {
-                    if (data.data == "true")
+                    if (data.data == 1)
                     {
                         // clear modal content
                         $scope.clearForm();
@@ -43,6 +43,7 @@ app.controller('loginController', function($scope, $rootScope, $location, $http)
                     }
                     else
                     {
+                        $scope.loginerror = true;
                         $('#error').html('Incorrect username or password');
                     }
 
@@ -50,6 +51,7 @@ app.controller('loginController', function($scope, $rootScope, $location, $http)
                 function (error)
                 {
                     console.log(error.data);
+                    $scope.loginerror = true;
                     $('#error').html('Incorrect username or password');
                 }
             );
@@ -59,4 +61,6 @@ app.controller('loginController', function($scope, $rootScope, $location, $http)
     $scope.sign_up = function () {
         $location.path('/register');
     }
+
+    $scope.loginerror = false;
 });

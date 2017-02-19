@@ -57,8 +57,19 @@ body .container.login-cont{
     box-shadow:  0 1px 0 0 #ec0034 !important;
 }
 
-.valign .row .col .login-des, .valign .row.login .col{
+.login_page .row .col, .login_page .row.login .col, .sign_up_page .row .col{
     color: #fff;
+}
+
+.login_page #error, .sign_up_page #error{
+    color: #ec0034;
+    background: #FFFFFF;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.login_page, .sign_up_page{
+    margin-top: 15%;
 }
 
 .login .btn{

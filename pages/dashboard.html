@@ -98,7 +98,7 @@
                         <div class="col s12">
                             <h3 class="experience-subtitle">Professional Experience</h3>
                         </div>
-                        <div class="col s12" ng-repeat="exp in expArr">
+                        <div class="col s12" ng-repeat="exp in expArr track by $index">
                             <h5>{{exp.TITLE}}</h5>
                             <p class="comp-name">{{exp.COMPANY}}</p>
                             <p><span class="comp-from">{{exp.DATE_FROM}}</span> –  <span class="comp-to">{{exp.DATE_TO}} ({{exp.PERIOD}})</span>
@@ -116,7 +116,7 @@
                             <h3 class="interest-subtitle">Interested Areas</h3>
                         </div>
                         <div class="col s12">
-                            <a class="btn disabled" ng-repeat="interest in interestsArr">{{interest}}</a>
+                            <a class="btn disabled" ng-repeat="interest in interestsArr track by $index">{{interest}}</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                         <div class="col s12">
                             <h3 class="eduction-subtitle">Eduction</h3>
                         </div>
-                        <div class="col s12" ng-repeat="edu in eduArr">
+                        <div class="col s12" ng-repeat="edu in eduArr track by $index">
                             <h5>{{edu.INSTITUTE}}</h5>
                             <p class="edu-study"><span class="edu-degree">{{edu.DEGREE}}</span>, <span class="edu-field">{{edu.FIELD}}</span></p>
                             <p class="edu-dates"><span class="edu-from">{{edu.DATE_FROM}}</span> –  <span class="edu-to">{{edu.DATE_TO}}</span></p>

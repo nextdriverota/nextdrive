@@ -13,7 +13,6 @@ class Rotaractor
     private $table_name = "rotaractor";
 
     // object properties
-    public $no;
     public $club;
     public $name_full;
     public $name_initials;
