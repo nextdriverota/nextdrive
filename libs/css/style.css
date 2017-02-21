@@ -358,9 +358,47 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
     color: #000;
 }
 
-.educationDelete, .experienceDelete{
+.educationDelete, .experienceDelete {
     margin-left: 5px;
 }
+
+#aboutSectionResults .person-img img{
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+#aboutSectionResults .about-subtitle{
+    margin-bottom: 0px;
+}
+
+#aboutSectionResults .person-info h5{
+    border: none;
+    padding-bottom: 0px;
+}
+
+#aboutSectionResults .person-info .city{
+    color: #b8b8b8;
+    margin-top: -8px;
+}
+
+#aboutSectionResults .about-inner{
+    height: auto;
+}
+
+#aboutSectionResults .person-bag p {
+    font-size: 13px;
+    line-height: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#aboutSectionResults .heading h5 {
+    font-size: 1.15rem;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 15px;
+}
+
+
 
 /* color section */
 .about-subtitle, .experience-subtitle, .interest-subtitle, .eduction-subtitle{

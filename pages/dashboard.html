@@ -6,7 +6,7 @@
                 <li class="search">
                     <form>
                         <div class="input-field">
-                            <input id="search" type="search" required ng-click="initResults()" ng-model="keywords" value="" key-enter="searchPeople()">
+                            <input id="search" type="search" required ng-click="initResults()" ng-model="keywords" ng-value="" key-enter="searchPeople()">
                             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                             <i class="material-icons search-ico" ng-click="searchPeople()">send</i>
                         </div>
@@ -139,9 +139,6 @@
             </section>
         </div>
     </div>
-
-
-
 
     <!-- edit profile -->
     <div class="row" ng-show="edit_profile_section">
@@ -280,6 +277,35 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- search results -->
+
+    <div class="row" ng-show="search_results_section">
+        <div class="col s12">
+            <section class="section" id="aboutSectionResults">
+                <div class="row">
+                    <div class="col s12 heading"><h5>People results for "{{keyword}}"</h5></div>
+                </div>
+                <div class="row" ng-repeat="res in searchResult track by $index">
+                    <div class="clearfix about-inner">
+                        <div class="col s1 person-img">
+                            <img class="z-depth-1" src="{{res.URL}}" alt="">
+                        </div>
+                        <div class="col s11">
+                            <div class="person-info">
+                                <h3 class="about-subtitle">{{res.NAME_ON_CARD}}</h3>
+                                <h5>{{res.CLUB}}</h5>
+                                <h5 class="city">{{res.ADD_CITY}}</h5>
+                                <div class="person-bag">
+                                    <p>{{res.BACKGROUND}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </div>
 

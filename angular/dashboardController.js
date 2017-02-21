@@ -1,7 +1,7 @@
 /**
  * Created by Prasanna on 1/15/2017.
  */
-app.controller('dashboardController', function($scope, $rootScope, fileUpload, $timeout, $location, $http) {
+app.controller('dashboardController', function($scope, $rootScope, $q, fileUpload, $timeout, $location, $http) {
 
     /* ***************************************
      * css rule manipulation
@@ -25,6 +25,7 @@ app.controller('dashboardController', function($scope, $rootScope, fileUpload, $
 
     $scope.editProfile = function () {
         $scope.public_profile_section = false;
+        $scope.search_results_section = false;
         $scope.edit_profile_section = true;
     }
 
@@ -897,58 +898,51 @@ app.controller('dashboardController', function($scope, $rootScope, fileUpload, $
     }
 
     $scope.searchPeople = function () {
-        console.log($scope.keywords);
+        //console.log($scope.keywords);
+        $scope.keyword = $scope.keywords;
         if ($scope.keywords != null && $scope.keywords != "") {
             $http.post('/nextdrive/operations/loadPeople.php', {
                     'name': $scope.keywords
                 }
             ).then(
                 function (data) {
-                    var data = data.data
-                    console.log(data);
-                    for (var i=0; i<data.length; i++)
-                    {
-                        $scope.res = {};
-                        $scope.res.basic = data[i];
-                        $http.post('/nextdrive/operations/links/loadLinks.php', {
-                                'nic': $scope.res.basic.NIC
-                            }
-                        ).then(
-                            function (data)
+                    $scope.searchResult = [];
+                    var data = data.data;
+                    data.forEach(function (item) {
+                        var url = "/nextdrive/propic/"+ item.NIC + ".png";
+                        var request = new XMLHttpRequest();
+                        request.open('HEAD', url, false);
+                        request.send();
+                        if(request.status == 200) {
+                            item.URL = url;
+                        } else {
+                            if ( (item.GENDER).toLowerCase() == "female" )
                             {
-                                $scope.res.links = data.data[0];
-
-                                var url = "/nextdrive/propic/"+ $scope.res.basic.NIC + ".png";
-                                var request = new XMLHttpRequest();
-                                request.open('HEAD', url, false);
-                                request.send();
-                                if(request.status == 200) {
-                                    $scope.res.person_image = url;
-                                } else {
-                                    if ( $scope.res.basic.GENDER == "Female" )
-                                    {
-                                        $scope.res.person_image = "/nextdrive/images/dashboard/profile-img-female.jpg";
-                                    }
-                                    else
-                                    {
-                                        $scope.res.person_image = "/nextdrive/images/dashboard/profile-img-male.jpg";
-                                    }
-                                }
-                                $scope.searchResult.push($scope.res);
-                            },
-                            function (error)
-                            {
-                                console.log(error.data);
+                                item.URL = "/nextdrive/images/dashboard/profile-img-female.jpg";
                             }
-                        );
-                    }
-                    console.log($scope.searchResult);
+                            else
+                            {
+                                item.URL = "/nextdrive/images/dashboard/profile-img-male.jpg";
+                            }
+                        }
+                        if ($rootScope.user != item.NIC)
+                        {
+                            $scope.searchResult.push(item);
+                        }
+                    });
+                    showResults();
                 },
                 function (error) {
                     console.log(error.data);
                 }
             );
         }
+    }
+
+    var showResults = function () {
+        $scope.public_profile_section = false;
+        $scope.edit_profile_section = false;
+        $scope.search_results_section = true;
     }
 
     /* ***************************************

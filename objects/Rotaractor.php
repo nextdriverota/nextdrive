@@ -11,6 +11,7 @@ class Rotaractor
     // database connection and table name
     private $conn;
     private $table_name = "rotaractor";
+    private $links_table = "links";
 
     // object properties
     public $club;
@@ -75,7 +76,8 @@ class Rotaractor
     }
 
     function getPeople(){
-        $query = "SELECT * FROM " .$this->table_name . " WHERE NAME LIKE :name1 OR NAME_ON_CARD LIKE :name2 " ;
+        $query = "SELECT rt.CLUB,rt.NAME_ON_CARD,rt.GENDER,rt.MOBILE,rt.EMAIL,rt.NIC,rt.DATE_OF_BIRTH_YEAR,rt.ADD_CITY,lk.BACKGROUND "
+              ."FROM " .$this->table_name . " rt LEFT JOIN " .$this->links_table . " lk ON rt.NIC = lk.NIC WHERE rt.NIC IN (SELECT NIC FROM rotaractor WHERE NAME_ON_CARD LIKE :name2 OR NAME_ON_CARD LIKE :name3);" ;
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -83,12 +85,12 @@ class Rotaractor
         // posted values
         $this->name=htmlspecialchars(strip_tags($this->name));
 
-        $name1 = ($this->name)."%";
         $name2 = "% ".($this->name)."%";
+        $name3 = ($this->name)."%";
 
         // bind values
-        $stmt->bindParam(":name1", $name1);
         $stmt->bindParam(":name2", $name2);
+        $stmt->bindParam(":name3", $name3);
 
         // execute query
         if($stmt->execute()){
@@ -114,7 +116,7 @@ class Rotaractor
     }
 
     function getAllNames(){
-        $query = "SELECT NAME_ON_CARD FROM " .$this->table_name . " ORDER BY NAME ASC " ;
+        $query = "SELECT NAME_ON_CARD, NIC FROM " .$this->table_name . " ORDER BY NAME ASC " ;
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -132,6 +134,36 @@ class Rotaractor
                     $arr[] = $row;
                 }
                 return $arr;
+            }
+
+        }else{
+            echo "<pre>";
+            print_r($stmt->errorInfo());
+            echo "</pre>";
+            return false;
+        }
+    }
+
+    function getFullDetail(){
+        $query = "SELECT * FROM " .$this->table_name . " WHERE NIC = :nic " ;
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // posted values
+        $this->nic=htmlspecialchars(strip_tags($this->nic));
+
+        // bind values
+        $stmt->bindParam(":nic", $this->nic);
+
+        // execute query
+        if($stmt->execute()){
+
+            $num = $stmt->rowCount();
+
+            if ($num == 1)
+            {
+                return $stmt->fetch(PDO::FETCH_ASSOC);
             }
 
         }else{
